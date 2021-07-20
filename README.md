@@ -28,7 +28,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [Add live site URL here](https://coffee-roasters-eight.vercel.app/create-plan)
+- Live Site URL: [Coffee-roasters](https://coffee-roasters-eight.vercel.app/create-plan)
 
 ### Built with
 
