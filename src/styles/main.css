@@ -1,0 +1,127 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Fraunces&display=swap");
+
+:root {
+  --color-dark-cyan: #0e8784;
+  --color-medium-turquoise: #66d2cf;
+  --color-dark-grey-blue: #333d4b;
+  --color-gunmetal: #2c343e;
+  --color-pale-orange: #fdd6ba;
+  --color-light-cream: #fefcf7;
+  --color-isabelline: #f4f1eb;
+  --color-grey: #83888f;
+  --primary-font: "Barlow", sans-serif;
+  --secondary-font: "Fraunces", sans-serif;
+  --navbar-icon-width: 1.5rem;
+  --navbar-icon-height: calc(var(--navbar-icon-width) * 0.75);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  padding: 44px 5.5% 88px;
+}
+
+/*TODO  remove the font-size and line height from this later. The line-height & font-size are not exactly universal for all h1s*/
+h1 {
+  font-family: "Fraunces", sans-serif;
+  /* font-size: 4.5rem;
+  line-height: 72px; */
+  color: var(--color-light-cream);
+}
+
+h2 {
+  font-family: "Fraunces", sans-serif;
+  font-size: 40px;
+  line-height: 48px;
+}
+
+h3 {
+  font-family: "Fraunces", sans-serif;
+  font-size: 32px;
+  line-height: 36px;
+}
+
+h4 {
+  font-family: "Fraunces", sans-serif;
+  font-size: 24px;
+  /* line-height: 32px; */
+}
+
+p {
+  font-family: "Barlow", sans-serif;
+  font-size: clamp(0.93rem, 0.895rem + 0.1167vw, 1rem);
+  line-height: clamp(1.56rem, 1.54rem + 0.0667vw, 1.6rem);
+}
+
+.font--grey {
+  color: var(--color-grey);
+}
+
+.font--grey-blue {
+  color: var(--color-dark-grey-blue);
+}
+
+.font--pale-orange {
+  color: var(--color-pale-orange);
+}
+
+.font--cream {
+  color: var(--color-light-cream);
+}
+
+a,
+.btn,
+.navbar__btn:hover {
+  cursor: pointer;
+}
+
+.btn {
+  color: var(--color-light-cream);
+  font-size: 18px;
+  font-family: "Fraunces";
+  border-radius: 6px;
+  padding: 15px 41px 23px;
+  border-style: none;
+}
+
+.btn:hover {
+  background-color: var(--color-medium-turquoise);
+}
+
+.color--cyan {
+  background-color: var(--color-dark-cyan);
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 32px 5% 72px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  body {
+    padding: 40px 5.2% 72px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+}
+
+@media (min-width: 1025px) {
+}
+
+/* this break point is used in homeHero.css to center align the text and such */
+@media (max-width: 700px) {
+}
+
+/* common breakpoints 
+  320px — 480px: Mobile devices
+  481px — 768px: iPads, Tablets
+  769px — 1024px: Small screens, laptops
+  1025px — 1200px: Desktops, large screens
+  1201px and more —  Extra large screens, TV */

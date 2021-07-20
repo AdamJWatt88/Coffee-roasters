@@ -1,0 +1,9 @@
+.order-phrases {
+  font-size: 24px;
+  line-height: 40px;
+  font-family: var(--secondary-font);
+}
+
+.order-summary__option {
+  color: var(--color-dark-cyan);
+}

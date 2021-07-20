@@ -1,0 +1,100 @@
+.modal-dimmer {
+  display: flex;
+  visibility: hidden;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.show-modal {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-plan {
+  height: 597px;
+  width: 540px;
+  background-color: var(--color-light-cream);
+  border-radius: 8px;
+  font-family: var(--secondary-font);
+}
+
+.modal-plan__header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 56px;
+  color: #fff;
+  font-size: 40px;
+  background: center / cover no-repeat
+    url("../assets/plan/desktop/bg-modal-top.png");
+  height: 136px;
+  width: 100%;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.modal-plan__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: none;
+  border: none;
+}
+
+.modal-plan__close:hover {
+  cursor: pointer;
+}
+
+.modal-plan__body {
+  padding: 56px;
+}
+
+.modal-plan__body-phrases {
+  margin-bottom: 63px;
+}
+
+.modal-plan__checkout {
+  margin-top: 57px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.modal-plan__checkout-price {
+  font-size: 32px;
+  line-height: 36px;
+}
+
+@media (max-width: 480px) {
+  .modal-plan__checkout .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 620px) {
+  .modal-plan__header {
+    padding-left: 0px;
+    justify-content: center;
+  }
+
+  .modal-dimmer {
+    padding: 35px 24px;
+  }
+
+  .modal-plan {
+    height: 100%;
+    width: 100%;
+  }
+}

@@ -1,0 +1,12 @@
+.create-plan-section-two {
+  display: flex;
+  padding-left: 6.3%;
+  padding-right: 6.3%;
+}
+
+@media (max-width: 1024px) {
+  .create-plan-section-two {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}

@@ -1,0 +1,18 @@
+.order-summary {
+  background: center / cover no-repeat
+    url("../assets/plan/desktop/bg-order-summary.png");
+  border-radius: 10px;
+  padding: 3.5% 8.5% 11.3%;
+  margin-bottom: 40px;
+}
+
+.order-summary__head {
+  font-size: 16px;
+  line-height: 26px;
+  font-family: var(--primary-font);
+  color: #707070;
+}
+
+.order-summary__btn {
+  width: 217px;
+}
