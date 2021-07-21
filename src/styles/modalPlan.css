@@ -22,7 +22,6 @@
 }
 
 .modal-plan {
-  height: 597px;
   width: 540px;
   background-color: var(--color-light-cream);
   border-radius: 8px;
@@ -94,7 +93,6 @@
   }
 
   .modal-plan {
-    height: 100%;
     width: 100%;
   }
 }

@@ -5,10 +5,12 @@ import Home from "./Home/Home";
 import About from "./AboutUs/About";
 import CreatePlan from "./CreatePlan/CreatePlan";
 import Footer from "./Layout/Footer";
+import ScrollToTop from "./ScrollToTop";
 
 const App = () => {
   return (
     <Router>
+      <ScrollToTop />
       <Navbar />
       <main>
         <Route exact path={"/"} component={Home} />
