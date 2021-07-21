@@ -56,7 +56,7 @@
 }
 
 .modal-plan__body {
-  padding: 56px;
+  padding: 10%;
 }
 
 .modal-plan__body-phrases {
@@ -89,7 +89,7 @@
   }
 
   .modal-dimmer {
-    padding: 35px 24px;
+    /* padding: 35px 24px; */
   }
 
   .modal-plan {
