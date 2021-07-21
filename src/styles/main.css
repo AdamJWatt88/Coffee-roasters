@@ -26,11 +26,10 @@ body {
   padding: 44px 5.5% 88px;
 }
 
-/*TODO  remove the font-size and line height from this later. The line-height & font-size are not exactly universal for all h1s*/
 h1 {
   font-family: "Fraunces", sans-serif;
-  /* font-size: 4.5rem;
-  line-height: 72px; */
+  font-size: 4.5rem;
+  line-height: 72px;
   color: var(--color-light-cream);
 }
 
@@ -49,7 +48,7 @@ h3 {
 h4 {
   font-family: "Fraunces", sans-serif;
   font-size: 24px;
-  /* line-height: 32px; */
+  line-height: 32px;
 }
 
 p {
@@ -108,20 +107,3 @@ a,
     padding: 40px 5.2% 72px;
   }
 }
-
-@media (min-width: 769px) and (max-width: 1024px) {
-}
-
-@media (min-width: 1025px) {
-}
-
-/* this break point is used in homeHero.css to center align the text and such */
-@media (max-width: 700px) {
-}
-
-/* common breakpoints 
-  320px — 480px: Mobile devices
-  481px — 768px: iPads, Tablets
-  769px — 1024px: Small screens, laptops
-  1025px — 1200px: Desktops, large screens
-  1201px and more —  Extra large screens, TV */

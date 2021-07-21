@@ -1,3 +1,7 @@
 Fix the hamburger menu. The hamburger menu does not stay properly spaced on mobile.
 
 Fix the links. When a link is clicked I want it to take you to the top of the page. Currently when a link is clicked it takes you to the same spot you were at but on another page.
+
+Fix overflow hidden not working on mobile.
+
+Fix the checkout modal not being centered on mobile. It cuts off the bottom.

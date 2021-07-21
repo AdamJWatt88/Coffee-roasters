@@ -80,8 +80,6 @@ const Navbar = () => {
         </svg>
       </button>
 
-      {renderSlideMenu()}
-
       <ul className='navbar__links-container'>
         <Link className='navbar__link' to='/'>
           <li>HOME</li>
@@ -93,6 +91,7 @@ const Navbar = () => {
           <li> CREATE YOUR PLAN</li>
         </Link>
       </ul>
+      {renderSlideMenu()}
     </nav>
   );
 };
