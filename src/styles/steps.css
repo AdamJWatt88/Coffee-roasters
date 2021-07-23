@@ -23,6 +23,11 @@
   cursor: pointer;
 }
 
+.step--disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
 .step__question {
   margin-right: auto;
   font-size: clamp(1.5rem, 1rem + 1.6667vw, 2.5rem);

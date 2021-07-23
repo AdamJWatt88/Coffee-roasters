@@ -7,6 +7,7 @@ import OrderPhrases from "./OrderPhrases";
 import css from "../../styles/modalPlan.css";
 
 const ModalPlan = ({
+  grind,
   planCost,
   orderSummary,
   modalDimmer,
@@ -73,6 +74,7 @@ const ModalPlan = ({
 
         <div className='modal-plan__body'>
           <OrderPhrases
+            grind={grind}
             className={"modal-plan__body-phrases"}
             phrase={phrase}
             phrase2={phrase2}

@@ -16,3 +16,7 @@
 .order-summary__btn {
   width: 217px;
 }
+
+.order-summary__btn:disabled {
+  cursor: not-allowed;
+}

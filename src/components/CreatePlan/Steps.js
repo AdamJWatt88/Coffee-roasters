@@ -91,14 +91,15 @@ const steps = [
 ];
 
 const Steps = () => {
-  const refs = Array.from(steps, () => createRef(null));
-  const refs2 = Array.from(steps, () => createRef(null));
+  const arrowRefs = Array.from(steps, () => createRef(null));
+  const choiceRefs = Array.from(steps, () => createRef(null));
 
   const [orderSummary, setOrderSummary] = useState([]);
   const [orderItem, setOrderItem] = useState("");
   const [orderSize, setOrderSize] = useState("");
   const [frequency, setFrequency] = useState("");
   const [planCost, setCost] = useState(null);
+  const [grind, setGrind] = useState(true);
 
   const checkSizeFrequency = () => {
     switch (orderItem.choice) {
@@ -134,25 +135,79 @@ const Steps = () => {
     }
   };
 
+  const closeGrind = () => {
+    const grindDropDown = document.getElementById("4");
+
+    grindDropDown.classList.add("step--disabled");
+
+    choiceRefs.forEach((choice) => {
+      if (choice.current.id === "4") {
+        choice.current.classList.remove("choices--open");
+      }
+    });
+
+    arrowRefs.forEach((arrow) => {
+      if (arrow.current.id === "4") {
+        arrow.current.classList.remove("step__arrow--open");
+      }
+    });
+
+    const sameItem = orderSummary.find((item) => item.id === 4);
+
+    const findUpdate = () => {
+      const updatedItem = { ...sameItem, choice: null };
+      const filteredArr = orderSummary.filter(
+        (item) => item.id !== updatedItem.id
+      );
+      setOrderSummary([...filteredArr, updatedItem]);
+    };
+
+    sameItem
+      ? findUpdate()
+      : setOrderSummary([...orderSummary, { id: 4, choice: null }]);
+  };
+
+  const removeGrind = () => {
+    const grindDropDown = document.getElementById("4");
+
+    grind ? grindDropDown.classList.remove("step--disabled") : closeGrind();
+  };
+
   useEffect(
     () => {
-      refs.forEach((ref, i) => {
+      arrowRefs.forEach((ref, i) => {
         ref.current.id = steps[i].id;
       });
-      refs2.forEach((ref, i) => {
+      choiceRefs.forEach((ref, i) => {
         ref.current.id = steps[i].id;
       });
 
       checkSizeFrequency();
+      removeGrind();
     },
     // eslint-disable-next-line
-    [orderItem]
+    [orderItem, grind]
   );
 
   useEffect(() => {
     getCost();
     // eslint-disable-next-line
   }, [frequency, orderSize]);
+
+  const getDropSiblings = (e, element) => {
+    let sibling = e.currentTarget.parentNode.firstChild;
+
+    let childrenArr = [];
+
+    while (sibling) {
+      if (sibling.nodeType === 1 && sibling !== element) {
+        childrenArr.push(sibling);
+      }
+      sibling = sibling.nextSibling;
+    }
+
+    return childrenArr;
+  };
 
   //add a cyan background to only one child element when selected
   const getSiblings = (e, element) => {
@@ -179,7 +234,8 @@ const Steps = () => {
   };
 
   const openDrop = (e) => {
-    refs.forEach((ref) => {
+    //add animation to the arrow
+    arrowRefs.forEach((ref) => {
       if (
         e.target.getAttribute("id") === ref.current.id &&
         ref.current.classList.contains("step__arrow--open")
@@ -190,7 +246,8 @@ const Steps = () => {
       }
     });
 
-    refs2.forEach((ref) => {
+    // open the choice selection
+    choiceRefs.forEach((ref) => {
       if (
         e.target.getAttribute("id") === ref.current.id &&
         ref.current.classList.contains("choices--open")
@@ -200,6 +257,8 @@ const Steps = () => {
         ref.current.classList.add("choices--open");
       }
     });
+
+    getDropSiblings(e, e.currentTarget);
   };
 
   const choiceSelect = (e) => {
@@ -209,8 +268,7 @@ const Steps = () => {
     const sameItem = _.find(orderSummary, { id: parentEl });
 
     const findUpdate = () => {
-      const foundItem = _.find(orderSummary, { id: parentEl });
-      const updatedItem = { ...foundItem, choice: childHeading };
+      const updatedItem = { ...sameItem, choice: childHeading };
       const filteredArr = orderSummary.filter(
         (item) => item.id !== updatedItem.id
       );
@@ -225,6 +283,12 @@ const Steps = () => {
         ]);
 
     setOrderItem({ id: parentEl, choice: childHeading });
+
+    if (childHeading === "Capsule") {
+      setGrind(false);
+    } else if (childHeading === "Filter" || childHeading === "Espresso") {
+      setGrind(true);
+    }
 
     getSiblings(e, e.currentTarget);
   };
@@ -242,14 +306,19 @@ const Steps = () => {
         choice3Body,
       } = step;
       return (
-        <div key={id} className='step'>
-          <div onClick={(e) => openDrop(e)} className='step__dropdown'>
+        <div onClick={(e) => openDrop(e)} key={id} id={id} className='step'>
+          <div className='step__dropdown'>
             <span id={id} className='step__question'>
               {question}
             </span>
-            <img ref={refs[i]} className='step__arrow' src={arrow} alt='' />
+            <img
+              ref={arrowRefs[i]}
+              className='step__arrow'
+              src={arrow}
+              alt=''
+            />
           </div>
-          <div ref={refs2[i]} className='choices'>
+          <div ref={choiceRefs[i]} className='choices'>
             <div
               onClick={(e) => choiceSelect(e)}
               value={choice1Head}
@@ -281,6 +350,7 @@ const Steps = () => {
     <div className='steps'>
       {renderSteps()}
       <OrderSummary
+        grind={grind}
         orderSummary={orderSummary}
         orderItem={orderItem}
         planCost={planCost}

@@ -5,7 +5,7 @@ import OrderPhrases from "./OrderPhrases";
 // eslint-disable-next-line
 import css from "../../styles/orderSummary.css";
 
-const OrderSummary = ({ orderSummary, orderItem, planCost }) => {
+const OrderSummary = ({ grind, orderSummary, orderItem, planCost }) => {
   const modalDimmer = useRef();
 
   const [phrase, setPhrase] = useState(null);
@@ -13,6 +13,8 @@ const OrderSummary = ({ orderSummary, orderItem, planCost }) => {
   const [phrase3, setPhrase3] = useState(null);
   const [phrase4, setPhrase4] = useState(null);
   const [phrase5, setPhrase5] = useState(null);
+
+  const [disabled, setDisabled] = useState(true);
 
   const setPhrases = () => {
     switch (orderItem.id) {
@@ -36,10 +38,23 @@ const OrderSummary = ({ orderSummary, orderItem, planCost }) => {
     }
   };
 
+  const findPhrase4 = () => {
+    const findPhrase = orderSummary.find((phrase) => phrase.id === 4);
+    if (findPhrase) {
+      setPhrase4(findPhrase.choice);
+    }
+  };
+
   useEffect(() => {
     setPhrases();
+    findPhrase4();
+
+    if (orderSummary.length >= 5) {
+      setDisabled(false);
+    }
+
     // eslint-disable-next-line
-  }, [orderItem]);
+  }, [orderItem, orderSummary]);
 
   const onClick = () => {
     modalDimmer.current.classList.add("show-modal");
@@ -53,6 +68,7 @@ const OrderSummary = ({ orderSummary, orderItem, planCost }) => {
       <div className='order-summary'>
         <h4 className='order-summary__head'>Order Summary</h4>
         <OrderPhrases
+          grind={grind}
           className={"font--cream"}
           phrase={phrase}
           phrase2={phrase2}
@@ -68,6 +84,7 @@ const OrderSummary = ({ orderSummary, orderItem, planCost }) => {
     <Fragment>
       {renderSummary()}
       <ModalPlan
+        grind={grind}
         planCost={planCost}
         orderSummary={orderSummary}
         modalDimmer={modalDimmer}
@@ -77,7 +94,10 @@ const OrderSummary = ({ orderSummary, orderItem, planCost }) => {
         phrase4={phrase4}
         phrase5={phrase5}
       />
-      <button onClick={onClick} className='order-summary__btn btn color--cyan'>
+      <button
+        disabled={disabled}
+        onClick={onClick}
+        className='order-summary__btn btn color--cyan'>
         Create my plan!
       </button>
     </Fragment>

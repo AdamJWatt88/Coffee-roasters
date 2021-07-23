@@ -4,6 +4,7 @@ import React from "react";
 import css from "../../styles/orderPhrases.css";
 
 const OrderPhrases = ({
+  grind,
   className,
   phrase,
   phrase2,
@@ -11,9 +12,30 @@ const OrderPhrases = ({
   phrase4,
   phrase5,
 }) => {
+  const renderUseAs = () => {
+    if (phrase === "Capsule") {
+      return " using ";
+    } else if (phrase === "Filter" || "Espresso") {
+      return " as ";
+    } else {
+      return " ";
+    }
+  };
+
+  const renderPhrase4 = () => {
+    if (phrase4) {
+      return <span className='order-summary__option'>{phrase4}</span>;
+    } else if (phrase4 === null && grind === false) {
+      return "";
+    } else {
+      return <span className='order-summary__option'>____</span>;
+    }
+  };
+
   return (
     <div className={className ? `order-phrases ${className}` : "order-phrases"}>
-      "I drink coffee{" "}
+      "I drink coffee
+      {renderUseAs()}
       <span className='order-summary__option'>{phrase ? phrase : "____"}</span>,
       with a{" "}
       <span className='order-summary__option'>
@@ -23,11 +45,8 @@ const OrderPhrases = ({
       <span className='order-summary__option'>
         {phrase3 ? phrase3 : "____"}
       </span>{" "}
-      ground ala{" "}
-      <span className='order-summary__option'>
-        {phrase4 ? phrase4 : "____"}
-      </span>
-      , sent to me{" "}
+      {grind ? " ground ala " : " "}
+      {renderPhrase4()}, sent to me{" "}
       <span className='order-summary__option'>
         {phrase5 ? phrase5 : "____"}
       </span>{" "}
