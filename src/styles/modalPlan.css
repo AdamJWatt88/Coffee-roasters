@@ -16,6 +16,7 @@
   transition: opacity 0.2s;
 }
 
+/* show the modal */
 .show-modal {
   visibility: visible;
   opacity: 1;
