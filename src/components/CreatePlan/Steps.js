@@ -305,6 +305,7 @@ const Steps = () => {
         choice3Head,
         choice3Body,
       } = step;
+
       return (
         <div onClick={(e) => openDrop(e)} key={id} id={id} className='step'>
           <div className='step__dropdown'>

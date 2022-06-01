@@ -17,6 +17,7 @@
 .step__dropdown {
   display: flex;
   align-items: center;
+  border: solid 1px red;
 }
 
 .step__dropdown:hover {
@@ -50,10 +51,15 @@
 
 .choices {
   display: none;
+  max-height: 0;
+  transition: max-height;
 }
 
 .choices--open {
+  border: solid 2px yellow;
   display: flex;
+  max-height: 100%;
+  transform: max-height ease;
 }
 
 .choices__card {
