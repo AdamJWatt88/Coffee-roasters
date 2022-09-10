@@ -3,29 +3,23 @@ import React from "react";
 // eslint-disable-next-line
 import css from "../../styles/orderPhrases.css";
 
-const OrderPhrases = ({
-  grind,
-  className,
-  phrase,
-  phrase2,
-  phrase3,
-  phrase4,
-  phrase5,
-}) => {
+const OrderPhrases = ({ className, orderSummary }) => {
   const renderUseAs = () => {
-    if (phrase === "Capsule") {
+    if (orderSummary?.preference === "Capsule") {
       return " using ";
-    } else if (phrase === "Filter" || "Espresso") {
+    } else if (orderSummary?.preference === "Filter" || "Espresso") {
       return " as ";
     } else {
       return " ";
     }
   };
 
-  const renderPhrase4 = () => {
-    if (phrase4) {
-      return <span className='order-summary__option'>{phrase4}</span>;
-    } else if (phrase4 === null && grind === false) {
+  const renderGrind = () => {
+    if (orderSummary?.grind) {
+      return (
+        <span className='order-summary__option'>{orderSummary.grind}</span>
+      );
+    } else if (orderSummary?.grind === "" || orderSummary?.grind === null) {
       return "";
     } else {
       return <span className='order-summary__option'>____</span>;
@@ -34,21 +28,23 @@ const OrderPhrases = ({
 
   return (
     <div className={className ? `order-phrases ${className}` : "order-phrases"}>
-      "I drink coffee
+      "I drink my coffee
       {renderUseAs()}
-      <span className='order-summary__option'>{phrase ? phrase : "____"}</span>,
-      with a{" "}
       <span className='order-summary__option'>
-        {phrase2 ? phrase2 : "____"}
+        {orderSummary?.preference ? orderSummary.preference : "____"}
+      </span>
+      , with a{" "}
+      <span className='order-summary__option'>
+        {orderSummary?.bean ? orderSummary.bean : "____"}
       </span>{" "}
       type of bean.{" "}
       <span className='order-summary__option'>
-        {phrase3 ? phrase3 : "____"}
+        {orderSummary?.quantity ? orderSummary.quantity : "____"}
       </span>{" "}
-      {grind ? " ground ala " : " "}
-      {renderPhrase4()}, sent to me{" "}
+      {orderSummary?.grind ? " ground ala " : " "}
+      {renderGrind()}, sent to me{" "}
       <span className='order-summary__option'>
-        {phrase5 ? phrase5 : "____"}
+        {orderSummary?.delivery ? orderSummary.delivery : "____"}
       </span>{" "}
       "
     </div>

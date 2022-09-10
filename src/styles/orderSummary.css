@@ -4,6 +4,9 @@
   border-radius: 10px;
   padding: 3.5% 8.5% 11.3%;
   margin-bottom: 40px;
+  grid-column: 2;
+  grid-row: 2;
+  height: min-content;
 }
 
 .order-summary__head {
@@ -14,7 +17,11 @@
 }
 
 .order-summary__btn {
-  width: 217px;
+  max-height: 56px;
+  max-width: 217px;
+  grid-column: 2;
+  /* grid-row: 3; */
+  justify-self: end;
 }
 
 .order-summary__btn:disabled {

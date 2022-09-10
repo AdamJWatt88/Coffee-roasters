@@ -1,8 +1,8 @@
 .steps-links {
   list-style: none;
-  width: 23.5%;
+  width: 100%;
   padding: 0px;
-  margin-right: auto;
+  /* margin-right: auto; */
   margin-top: 0px;
   height: min-content;
 }
@@ -21,6 +21,7 @@
   width: 100%;
   padding-top: 1.5rem;
   padding-bottom: 2rem;
+  text-decoration: none;
 }
 
 .step-link:first-of-type {

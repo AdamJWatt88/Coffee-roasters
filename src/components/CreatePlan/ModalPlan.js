@@ -1,23 +1,34 @@
 import React, { useState, useEffect, Fragment } from "react";
 import ReactDOM from "react-dom";
+import { plans } from "../../utils/content/plans";
 
 import OrderPhrases from "./OrderPhrases";
 
 // eslint-disable-next-line
 import css from "../../styles/modalPlan.css";
 
-const ModalPlan = ({
-  grind,
-  planCost,
-  orderSummary,
-  modalDimmer,
-  phrase,
-  phrase2,
-  phrase3,
-  phrase4,
-  phrase5,
-}) => {
+const ModalPlan = ({ orderSummary, modalDimmer }) => {
+  const { quantity, delivery } = orderSummary;
+
   const [isDesktop, setDesktop] = useState(window.innerWidth < 481);
+  const [planCost, setPlanCost] = useState("");
+
+  // convert the delivery value from state to match the keys of the plans object
+  const convertDelivery = (delivery) => {
+    switch (delivery) {
+      case "Every week":
+        return "weekly";
+
+      case "Every 2 weeks":
+        return "biWeekly";
+
+      case "Every month":
+        return "monthly";
+
+      default:
+        return;
+    }
+  };
 
   const updateMedia = () => {
     setDesktop(window.innerWidth < 481);
@@ -29,6 +40,15 @@ const ModalPlan = ({
     //eslint-disable-next-line
   }, []);
 
+  // find the plan from the plans data using the matching quantity
+  // then set the planCost by matching the delivery
+  useEffect(() => {
+    const convertedDelivery = convertDelivery(delivery);
+
+    const findPlan = plans.find((item) => item.quantity === quantity);
+    if (findPlan) setPlanCost(findPlan[convertedDelivery]);
+  }, [orderSummary]);
+
   const onClick = () => {
     modalDimmer.current.classList.remove("show-modal");
     document.body.classList.contains("overflow")
@@ -36,22 +56,23 @@ const ModalPlan = ({
       : document.body.classList.add("overflow");
   };
 
+  // render with the checkout button seperate on large screen
   const renderLarger = () => {
     return (
       <Fragment>
         <span className='modal-plan__checkout-price'>
-          {orderSummary.length === 5 ? `$${planCost} / mo` : "$____ / mo"}
+          {`$${planCost} / mo`}
         </span>
         <button className='btn color--cyan'>Checkout</button>
       </Fragment>
     );
   };
 
+  // render with checkout button containing cost on smaller screens
   const renderSmaller = () => {
     return (
       <button className='btn color--cyan'>
-        Checkout -{" "}
-        {orderSummary.length === 5 ? `$${planCost} / mo` : "$____ / mo"}
+        Checkout - {`$${planCost} / mo`}
       </button>
     );
   };
@@ -74,13 +95,8 @@ const ModalPlan = ({
 
         <div className='modal-plan__body'>
           <OrderPhrases
-            grind={grind}
+            orderSummary={orderSummary}
             className={"modal-plan__body-phrases"}
-            phrase={phrase}
-            phrase2={phrase2}
-            phrase3={phrase3}
-            phrase4={phrase4}
-            phrase5={phrase5}
           />
 
           <p>

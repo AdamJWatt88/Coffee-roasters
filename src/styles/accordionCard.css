@@ -1,0 +1,46 @@
+.accordion__cards {
+  display: flex;
+  width: 100%;
+}
+
+.accordion__card {
+  display: block;
+  background-color: var(--color-isabelline);
+  margin-right: 3%;
+  border-radius: 0.5rem;
+  padding: 4.4% 3.8% 5%;
+}
+
+.accordion__card:hover {
+  cursor: pointer;
+  background-color: var(--color-pale-orange);
+}
+
+.accordion__card:last-of-type {
+  margin-right: 0px;
+}
+
+.accordion__card-head {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-family: var(--secondary-font);
+}
+
+.accordion__card-body {
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  .accordion {
+    flex-direction: column;
+  }
+
+  .accordion__card {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .accordion__card:first-of-type {
+    margin-top: 2rem;
+  }
+}
