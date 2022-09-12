@@ -2,6 +2,9 @@
   width: 100%;
   margin-bottom: 9rem;
   color: var(--color-dark-grey-blue);
+
+  padding-left: 2.9%;
+  padding-right: 2.9%;
 }
 
 .services__title {
@@ -67,8 +70,6 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 5.5rem;
-    padding-left: 2.9%;
-    padding-right: 2.9%;
   }
 
   .services__card {

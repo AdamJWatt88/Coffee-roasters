@@ -6,8 +6,6 @@
 
 - Maybe move all data from the components and move it to another folder then import the data. Not sure if this is the best method or not but it seems logical.
 
-- Fix the Services component on the createPlan page. The padding is not uniform for all elements. Most evident with the line and three dots.
-
 - Remove the padding-top from the first accordion list item.
 
 - Try to come up with a more elegant solution to adding and removing the background color to the cards in Accordion.js.
@@ -38,3 +36,5 @@
 - Delete Steps from CreatePlanSectionTwo.js
 
 - Clean up all the trial and error code from Accordion, AccordionItem and  AccordionCard.
+
+- Fix the Services component on the createPlan page. The padding is not uniform for all elements. Most evident with the line and three dots.
